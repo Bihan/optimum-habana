@@ -149,8 +149,8 @@ if __name__ == "__main__":
             ratio = chars_token_ratio(train_data, tokenizer, formatting_func)
             logger.info(f"The character to token ratio of the dataset is: {ratio:.2f}")
         else:
-            formating_func = None
-        return train_data, valid_data, formating_func
+            formatting_func = None
+        return train_data, valid_data, formatting_func
 
     low_cpu_mem_usage = True
     if is_deepspeed_available():
