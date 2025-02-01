@@ -122,7 +122,7 @@ if __name__ == "__main__":
         if args.dataset_name:
             dataset = load_dataset(
                 args.dataset_name,
-                data_dir=None if args.subset == "None" else args.subset,
+                data_dir=None,
                 split=args.split,
                 token=script_args.token,
                 num_proc=args.num_workers if not args.streaming else None,
@@ -141,16 +141,16 @@ if __name__ == "__main__":
             valid_data = dataset["test"]
             logger.info(f"Size of the train set: {len(train_data)}. Size of the validation set: {len(valid_data)}")
         if args.dataset_name == "lvwerra/stack-exchange-paired":
-            formatting_func = prepare_sample_text
-            ratio = chars_token_ratio(train_data, tokenizer, formatting_func)
+            formating_func = prepare_sample_text
+            ratio = chars_token_ratio(train_data, tokenizer, formating_func)
             logger.info(f"The character to token ratio of the dataset is: {ratio:.2f}")
         elif args.dataset_name == "spider":
-            formatting_func = prepare_spider_text
-            ratio = chars_token_ratio(train_data, tokenizer, formatting_func)
+            formating_func = prepare_spider_text
+            ratio = chars_token_ratio(train_data, tokenizer, formating_func)
             logger.info(f"The character to token ratio of the dataset is: {ratio:.2f}")
         else:
-            formatting_func = None
-        return train_data, valid_data, formatting_func
+            formating_func = None
+        return train_data, valid_data, formating_func
 
     low_cpu_mem_usage = True
     if is_deepspeed_available():
