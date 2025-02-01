@@ -136,9 +136,9 @@ if __name__ == "__main__":
             train_data = dataset.skip(args.size_valid_set)
             train_data = train_data.shuffle(buffer_size=args.shuffle_buffer, seed=seed)
         else:
-            dataset = dataset.train_test_split(test_size=args.validation_split_percentage * 0.01, seed=seed)
-            train_data = dataset["train"]
-            valid_data = dataset["test"]
+            # dataset = dataset.train_test_split(test_size=args.validation_split_percentage * 0.01, seed=seed)
+            train_data = dataset.take(args.size_valid_set)#dataset["train"]
+            valid_data = dataset.skip(args.size_valid_set)#dataset["test"]
             logger.info(f"Size of the train set: {len(train_data)}. Size of the validation set: {len(valid_data)}")
         if args.dataset_name == "lvwerra/stack-exchange-paired":
             formating_func = prepare_sample_text
