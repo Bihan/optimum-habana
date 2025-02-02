@@ -146,8 +146,8 @@ if __name__ == "__main__":
             logger.info(f"The character to token ratio of the dataset is: {ratio:.2f}")
         elif args.dataset_name == "spider":
             formating_func = prepare_spider_text
-            ratio = chars_token_ratio(train_data, tokenizer, formating_func)
-            logger.info(f"The character to token ratio of the dataset is: {ratio:.2f}")
+            # ratio = chars_token_ratio(train_data, tokenizer, formating_func)
+            # logger.info(f"The character to token ratio of the dataset is: {ratio:.2f}")
         else:
             formating_func = None
         return train_data, valid_data, formating_func
